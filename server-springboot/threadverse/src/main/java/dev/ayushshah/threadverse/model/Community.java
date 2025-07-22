@@ -12,16 +12,19 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "comments")
-public class Comment {
+@Document(collection = "communities")
+public class Community {
     @Id
     private String id;
-    private String content;
+    private String name;
+    private String description;
 
-    private int votes = 0;
+    private int memberCount = 0;
 
-    private Date date = new Date();
+    private Date dateCreated = new Date();
 
-    private String authorID;
-    private List<String> replyIds;    
+    private String authorId;
+    private List<String> memberIds;
+    private List<String> postIds;
+    
 }
