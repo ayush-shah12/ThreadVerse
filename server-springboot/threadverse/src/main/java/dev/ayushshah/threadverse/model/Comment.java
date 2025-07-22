@@ -1,0 +1,28 @@
+package dev.ayushshah.threadverse.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "comments")
+public class Comment {
+    @Id
+    private String id;
+    private String content;
+    private String authorID;
+
+    private int votes = 0;
+
+    private Date date = new Date();
+
+    private List<String> replyIds;
+    
+}
