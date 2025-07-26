@@ -30,5 +30,5 @@ public class User {
     private Date dateJoined = new Date();
     
     @Builder.Default
-    private String role = "user";
+    private String role = "USER";
 }
