@@ -14,7 +14,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import dev.ayushshah.threadverse.dto.UserDTO;
 
 public class JWTService {
-    private static final String secret = "temporaryasdasdasdasdyuij";
+    private static final String secret = System.getenv("JWT_SECRET");
     private static final Algorithm algorithm = Algorithm.HMAC256(secret);
     private static final JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
 
