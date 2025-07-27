@@ -13,11 +13,14 @@ import org.springframework.security.core.Authentication;
 import dev.ayushshah.threadverse.dto.CreatePostRequest;
 import dev.ayushshah.threadverse.dto.PostWithUserDTO;
 import dev.ayushshah.threadverse.dto.UserDTO;
+import dev.ayushshah.threadverse.dto.UpdatePostRequest;
 import dev.ayushshah.threadverse.model.Post;
 import dev.ayushshah.threadverse.service.PostService;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/post")
@@ -50,6 +53,11 @@ public class PostController {
     @PostMapping()
     public ResponseEntity<Post> createPost(@RequestBody CreatePostRequest postRequest, Authentication auth) {
         return ResponseEntity.ok(postService.createPost(postRequest, ((UserDTO) auth.getPrincipal()).getId()));
+    }
+
+    @PutMapping("/{postId}")
+    public ResponseEntity<Post> updatePost(@PathVariable String postId, @RequestBody UpdatePostRequest updatePostRequest, Authentication auth) {
+        return ResponseEntity.ok(postService.updatePost(postId, updatePostRequest, ((UserDTO) auth.getPrincipal()).getId()));
     }
 
 }
