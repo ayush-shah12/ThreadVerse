@@ -28,7 +28,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/me")
+    @GetMapping("/me")
     public ResponseEntity<UserDTO> getCurrentUser(Authentication auth) {
         UserDTO user = (UserDTO) auth.getPrincipal();
         return ResponseEntity.ok(user);
