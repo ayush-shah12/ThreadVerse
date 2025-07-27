@@ -35,12 +35,6 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
-        String path = request.getRequestURI();
-        return path.startsWith("/auth/") || path.startsWith("/public/");
-    }
-
-    @Override
     protected void doFilterInternal(@NonNull HttpServletRequest req, @NonNull HttpServletResponse res,
             @NonNull FilterChain chain) throws ServletException, IOException {
 
@@ -55,36 +49,32 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        if (token == null) {
-            chain.doFilter(req, res);
-            return;
-        }
+        if (token != null) {
+            try {
+                Optional<String> userIdOpt = JWTService.verifyToken(token);
 
-        try {
+                if (userIdOpt.isPresent()) {
+                    String userId = userIdOpt.get();
 
-            Optional<String> userIdOpt = JWTService.verifyToken(token);
+                    User user = userRepository.findById(userId)
+                            .orElse(null);
 
-            if (userIdOpt.isEmpty()) {
-                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
+                    if (user != null) {
+                        UserDTO userDTO = userMapper.toDTO(user);
+
+                        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDTO,
+                                null,
+                                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole())));
+
+                        SecurityContextHolder.getContext().setAuthentication(auth);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("JWT Auth Failed Due To Exception: " + e.getMessage());
             }
-
-            String userId = userIdOpt.get();
-
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-
-            UserDTO userDTO = userMapper.toDTO(user);
-
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDTO, null,
-                    List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole())));
-
-            SecurityContextHolder.getContext().setAuthentication(auth);
-        } catch (Exception e) {
-            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
         }
 
+        // continue filter chain regardless of token status
         chain.doFilter(req, res);
     }
 
