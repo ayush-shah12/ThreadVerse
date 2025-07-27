@@ -13,13 +13,13 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
     @Override
     public boolean isValid(RegisterRequest registerRequest, ConstraintValidatorContext context) {
-        String password = registerRequest.getPassword();
+        String password = registerRequest.password();
 
         if(
-            password.contains(registerRequest.getDisplayName()) || 
-            password.contains(registerRequest.getFirstName()) ||
-            password.contains(registerRequest.getLastName()) ||
-            password.contains(registerRequest.getEmail())
+            password.contains(registerRequest.displayName()) || 
+            password.contains(registerRequest.firstName()) ||
+            password.contains(registerRequest.lastName()) ||
+            password.contains(registerRequest.email())
         ) {
             return false;
         }

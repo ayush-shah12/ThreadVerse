@@ -27,20 +27,20 @@ public class AuthService {
     }
 
     public UserDTO register(RegisterRequest registerRequest) {
-        if (userRepository.existsByEmail(registerRequest.getEmail())) {
+        if (userRepository.existsByEmail(registerRequest.email())) {
             throw new RuntimeException("Email Already Exists");
         }
 
-        if (userRepository.existsByDisplayName(registerRequest.getDisplayName())) {
+        if (userRepository.existsByDisplayName(registerRequest.displayName())) {
             throw new RuntimeException("Display Name Already Exists");
         }
 
         User user = User.builder()
-                .firstName(registerRequest.getFirstName())
-                .lastName(registerRequest.getLastName())
-                .email(registerRequest.getEmail())
-                .displayName(registerRequest.getDisplayName())
-                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .firstName(registerRequest.firstName())
+                .lastName(registerRequest.lastName())
+                .email(registerRequest.email())
+                .displayName(registerRequest.displayName())
+                .password(passwordEncoder.encode(registerRequest.password()))
                 .build();
 
         User savedUser = userRepository.save(user);
