@@ -1,6 +1,7 @@
 package dev.ayushshah.threadverse.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class UserDTO {
     @Id
     private String id;
