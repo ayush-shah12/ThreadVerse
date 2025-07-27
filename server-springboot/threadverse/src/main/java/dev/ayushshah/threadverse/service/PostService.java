@@ -193,4 +193,19 @@ public class PostService {
 		return savedPost;
 
 	}
+
+	public String getCommunityName(String postId){
+		if(!postRepository.existsById(postId)){
+			throw new ResourceNotFoundException("Post Not Found");
+		}
+
+		List<Community> communities = communityRepository.findAll();
+		for(Community c: communities){
+			if (c.getPostIds().contains(postId)){
+				return c.getName();
+			}
+		}
+
+		throw new ResourceNotFoundException("Community Not Found");
+	}
 }
