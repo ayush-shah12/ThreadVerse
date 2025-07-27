@@ -129,24 +129,24 @@ public class PostService {
 
 	public Post createPost(CreatePostRequest postRequest, String userId) {
 		// check if community exists
-		if (!communityRepository.existsById(postRequest.getCommunityId())) {
+		if (!communityRepository.existsById(postRequest.communityId())) {
 			throw new ResourceNotFoundException("Community Not Found");
 		}
 
 		// create or check if existing linkflair exists
 		String linkflairID = "";
 
-		if (postRequest.isNewLinkflair()) {
+		if (postRequest.newLinkflair()) {
 			Linkflair newLinkflair = Linkflair.builder()
-					.content(postRequest.getNewLinkflairName())
+					.content(postRequest.newLinkflairName())
 					.build();
 			Linkflair saved = linkflairRepository.save(newLinkflair);
 			linkflairID = saved.getId();
 		} else {
-			if (!linkflairRepository.existsById(postRequest.getLinkflairId())) {
+			if (!linkflairRepository.existsById(postRequest.linkflairId())) {
 				throw new ResourceNotFoundException("Linkflair Not Found");
 			}
-			linkflairID = postRequest.getLinkflairId();
+			linkflairID = postRequest.linkflairId();
 
 		}
 
@@ -154,8 +154,8 @@ public class PostService {
 		Post post = Post.builder()
 				.authorId(userId)
 				.commentIds(List.of())
-				.content(postRequest.getContent())
-				.title(postRequest.getTitle())
+				.content(postRequest.content())
+				.title(postRequest.title())
 				.linkflairId(linkflairID)
 				.build();
 
@@ -163,7 +163,7 @@ public class PostService {
 		Post saved_post = postRepository.save(post);
 
 		// update community
-		Community community = communityRepository.findById(postRequest.getCommunityId())
+		Community community = communityRepository.findById(postRequest.communityId())
 				.orElseThrow(() -> new ResourceNotFoundException("Community not found"));
 
 		community.getPostIds().add(saved_post.getId());

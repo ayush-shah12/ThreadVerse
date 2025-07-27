@@ -1,16 +1,14 @@
 package dev.ayushshah.threadverse.dto;
 
-import lombok.Data;
+public record CreatePostRequest(
+        String title,
+        String content,
+        String communityId,
 
-@Data
-public class CreatePostRequest {
-    private String title;
-    private String content;
-    private String communityId;
+        String linkflairId,
 
-    private String linkflairId;
+        boolean newLinkflair,
+        String newLinkflairName
 
-    private boolean newLinkflair;
-    private String newLinkflairName;
-
+) {
 }
