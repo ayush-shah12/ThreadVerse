@@ -49,12 +49,12 @@ public class AuthService {
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
-        Optional<User> user = userRepository.findByEmail(loginRequest.getEmail());
+        Optional<User> user = userRepository.findByEmail(loginRequest.email());
 
         User present_user = user.orElseThrow(() -> new RuntimeException(
                 "Email Not Found"));
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), present_user.getPassword())) {
+        if (!passwordEncoder.matches(loginRequest.password(), present_user.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
 
