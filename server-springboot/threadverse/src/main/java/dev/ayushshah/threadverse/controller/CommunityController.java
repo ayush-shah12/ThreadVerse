@@ -21,7 +21,6 @@ import dev.ayushshah.threadverse.model.Community;
 
 import java.util.List;
 import java.util.Map;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
