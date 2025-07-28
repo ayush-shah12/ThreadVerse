@@ -28,10 +28,22 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/post", "/post/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/post", "/post/**").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/post", "/post/**").authenticated()
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()    
+
+                        .requestMatchers(HttpMethod.GET, "/users", "/users/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/users", "/users/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/users", "/users/**").authenticated()
+
+
+                        .requestMatchers(HttpMethod.GET, "/posts", "/posts/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/posts", "/posts/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/posts", "/posts/**").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/communities", "/communities/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/communities", "/communities/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/communities", "/communities/**").authenticated()
+
+
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
