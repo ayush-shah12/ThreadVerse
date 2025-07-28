@@ -40,6 +40,11 @@ public class CommentController {
         return ResponseEntity.ok(commentService.getCommentById(commentId));
     }
 
+    @GetMapping("/getByAuthor/{authorId}")
+    public ResponseEntity<List<Map<?, ?>>> getCommentsByAuthor(@PathVariable String authorId) {
+        return ResponseEntity.ok(commentService.getAllCommentsByAuthor(authorId));
+    }
+
     @PutMapping("/update/{commentId}")
     public ResponseEntity<Comment> updateComment(@PathVariable String commentId,
             @RequestBody UpdateResourceRequest updateResourceRequest, Authentication auth) {
@@ -60,10 +65,4 @@ public class CommentController {
         return ResponseEntity.ok(commentService.replyToComment(commentId, createCommentRequest.content(),
                 ((UserDTO) auth.getPrincipal()).getId()));
     }
-
-    @GetMapping("/getByAuthor/{authorId}")
-    public ResponseEntity<List<Map<?, ?>>> getCommentsByAuthor(@PathVariable String authorId) {
-        return ResponseEntity.ok(commentService.getAllCommentsByAuthor(authorId));
-    }
-
 }
