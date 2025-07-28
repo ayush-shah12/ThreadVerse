@@ -10,6 +10,9 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -25,6 +28,14 @@ public class CommunityController {
     public ResponseEntity<List<CommunityWithUserDTO>> getAllCommunities() {
         return ResponseEntity.ok(communityService.getAllCommunities());
     }
+
+    @GetMapping("/{communityId}")
+    public ResponseEntity<CommunityWithUserDTO> getCommunityById(@PathVariable String communityId) {
+        return ResponseEntity.ok(communityService.getCommunityById(communityId));
+    }
+    
+
+
     
 
 }
