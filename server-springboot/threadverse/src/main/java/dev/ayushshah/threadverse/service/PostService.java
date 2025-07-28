@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import dev.ayushshah.threadverse.dto.CreatePostRequest;
 import dev.ayushshah.threadverse.dto.PostWithUserDTO;
-import dev.ayushshah.threadverse.dto.UpdatePostRequest;
+import dev.ayushshah.threadverse.dto.UpdateResourceRequest;
 import dev.ayushshah.threadverse.dto.UserDTO;
 import dev.ayushshah.threadverse.mapper.PostMapper;
 import dev.ayushshah.threadverse.model.Community;
@@ -174,7 +174,7 @@ public class PostService {
 
 	}
 
-	public Post updatePost(String postId, UpdatePostRequest updatePostRequest, String userId) {
+	public Post updatePost(String postId, UpdateResourceRequest updatePostRequest, String userId) {
 		if (!postRepository.existsById(postId)) {
 			throw new ResourceNotFoundException("Post Not Found");
 		}
@@ -185,8 +185,8 @@ public class PostService {
 			throw new RuntimeException("Unauthorized to edit post");
 		}
 
-		post.setContent(updatePostRequest.updatedContent());
-		post.setTitle(updatePostRequest.updatedTitle());
+		post.setContent(updatePostRequest.updatedContentOrDescription());
+		post.setTitle(updatePostRequest.updatedTitleOrName());
 
 		Post savedPost = postRepository.save(post);
 
@@ -194,14 +194,14 @@ public class PostService {
 
 	}
 
-	public String getCommunityName(String postId){
-		if(!postRepository.existsById(postId)){
+	public String getCommunityName(String postId) {
+		if (!postRepository.existsById(postId)) {
 			throw new ResourceNotFoundException("Post Not Found");
 		}
 
 		List<Community> communities = communityRepository.findAll();
-		for(Community c: communities){
-			if (c.getPostIds().contains(postId)){
+		for (Community c : communities) {
+			if (c.getPostIds().contains(postId)) {
 				return c.getName();
 			}
 		}

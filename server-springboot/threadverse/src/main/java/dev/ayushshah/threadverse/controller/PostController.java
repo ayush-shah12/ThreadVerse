@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 import dev.ayushshah.threadverse.dto.CreatePostRequest;
 import dev.ayushshah.threadverse.dto.PostWithUserDTO;
 import dev.ayushshah.threadverse.dto.UserDTO;
-import dev.ayushshah.threadverse.dto.UpdatePostRequest;
+import dev.ayushshah.threadverse.dto.UpdateResourceRequest;
 import dev.ayushshah.threadverse.model.Post;
 import dev.ayushshah.threadverse.service.PostService;
 
@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/posts")
 public class PostController {
 
     private final PostService postService;
@@ -46,25 +46,25 @@ public class PostController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/byCommunity/{communityId}")
+    @GetMapping("/getByCommunity/{communityId}")
     public ResponseEntity<List<PostWithUserDTO>> getPostsByCommunity(@PathVariable String communityId) {
         return ResponseEntity.ok(postService.getPostsByCommunityId(communityId));
     }
 
-    @GetMapping("/{postId}/community-name")
+    @GetMapping("/getCommunityName/{postId}")
     public Map<String, String> getCommunityNameFromPostId(@PathVariable String postId) {
         String communityName = postService.getCommunityName(postId);
         return Map.of("communityName", communityName);
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<Post> createPost(@RequestBody CreatePostRequest postRequest, Authentication auth) {
         return ResponseEntity.ok(postService.createPost(postRequest, ((UserDTO) auth.getPrincipal()).getId()));
     }
 
-    @PutMapping("/{postId}")
+    @PutMapping("/update/{postId}")
     public ResponseEntity<Post> updatePost(@PathVariable String postId,
-            @RequestBody UpdatePostRequest updatePostRequest, Authentication auth) {
+            @RequestBody UpdateResourceRequest updatePostRequest, Authentication auth) {
         return ResponseEntity
                 .ok(postService.updatePost(postId, updatePostRequest, ((UserDTO) auth.getPrincipal()).getId()));
     }
