@@ -8,5 +8,6 @@ import dev.ayushshah.threadverse.model.Community;
 @Repository
 public interface CommunityRepository extends MongoRepository<Community, String> {
 
+    public boolean existsByNameAllIgnoreCase(String name);
 
 }
