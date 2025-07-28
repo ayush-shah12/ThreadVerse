@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import dev.ayushshah.threadverse.dto.CommunityWithUserDTO;
+import dev.ayushshah.threadverse.dto.CreateCommunityRequest;
+import dev.ayushshah.threadverse.dto.UpdateResourceRequest;
 import dev.ayushshah.threadverse.dto.UserDTO;
 import dev.ayushshah.threadverse.mapper.CommunityMapper;
 import dev.ayushshah.threadverse.model.Community;
@@ -72,5 +74,78 @@ public class CommunityService {
                 c.setUser(UserDTO.builder().displayName(user.getDisplayName()).build());
 
                 return c;
+        }
+
+        public Community createCommunity(CreateCommunityRequest createCommunityRequest, String userId) {
+                if (communityRepository.existsByNameAllIgnoreCase(createCommunityRequest.name())) {
+                        throw new RuntimeException("Community Name Already Exists");
+                }
+
+                Community c = Community.builder()
+                                .authorId(userId)
+                                .description(createCommunityRequest.description())
+                                .name(createCommunityRequest.name())
+                                .memberCount(1)
+                                .memberIds(List.of(userId))
+                                .postIds(List.of())
+                                .build();
+
+                Community saved = communityRepository.save(c);
+
+                return saved;
+        }
+
+        public Community updateCommunity(String communityId, UpdateResourceRequest updateCommunityRequest,
+                        String userId) {
+                if (!communityRepository.existsById(communityId)) {
+                        throw new ResourceNotFoundException("Community Not Found");
+                }
+
+                Community c = communityRepository.findById(communityId).get();
+
+                if (!c.getAuthorId().equals(userId)) {
+                        throw new RuntimeException("Unauthorized to update community.");
+                }
+
+                c.setDescription(updateCommunityRequest.updatedContentOrDescription());
+                c.setName(updateCommunityRequest.updatedTitleOrName());
+
+                Community saved = communityRepository.save(c);
+
+                return saved;
+        }
+
+        public boolean existsByName(String communityName) {
+                return communityRepository.existsByNameAllIgnoreCase(communityName);
+        }
+
+        public boolean joinCommunity(String communityId, String userId) {
+                Community community = communityRepository.findById(communityId)
+                                .orElseThrow(() -> new ResourceNotFoundException("Community Not Found"));
+
+                if (community.getMemberIds().contains(userId)) {
+                        return false;
+                } else {
+                        community.getMemberIds().add(userId);
+                        community.setMemberCount(community.getMemberCount() + 1);
+                        communityRepository.save(community);
+                        return true;
+                }
+        }
+
+        public boolean leaveCommunity(String communityId, String userId) {
+                Community community = communityRepository.findById(communityId)
+                                .orElseThrow(() -> new ResourceNotFoundException("Community Not Found"));
+
+                if (community.getMemberIds().contains(userId)) {
+                        community.getMemberIds().remove(userId);
+                        community.setMemberCount(community.getMemberCount() - 1);
+                        communityRepository.save(community);
+                        return true;
+
+                } else {
+                        return false;
+                }
+
         }
 }
