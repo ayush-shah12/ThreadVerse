@@ -194,6 +194,14 @@ public class PostService {
 
 	}
 
+	public boolean updateViews(String postId){
+		Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post Not Found"));
+
+		post.setViews(post.getViews() + 1);
+		postRepository.save(post);
+		return true;
+	}
+
 	public String getCommunityName(String postId) {
 		if (!postRepository.existsById(postId)) {
 			throw new ResourceNotFoundException("Post Not Found");

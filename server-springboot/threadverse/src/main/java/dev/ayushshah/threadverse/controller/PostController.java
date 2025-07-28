@@ -69,4 +69,10 @@ public class PostController {
                 .ok(postService.updatePost(postId, updatePostRequest, ((UserDTO) auth.getPrincipal()).getId()));
     }
 
+    @PutMapping("updateViews/{postId}")
+    public ResponseEntity<Boolean> updateViews(@PathVariable String postId, Authentication auth) {
+
+        return ResponseEntity.ok(postService.updateViews(postId));
+    }
+
 }
