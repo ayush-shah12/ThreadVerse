@@ -127,6 +127,10 @@ public class PostService {
 		return getPostsByIds(postIds);
 	}
 
+	public List<Post> getPostsByAuthorId(String authorId){
+		return postRepository.findAllByAuthorId(authorId);
+	}
+
 	public Post createPost(CreatePostRequest postRequest, String userId) {
 		// check if community exists
 		if (!communityRepository.existsById(postRequest.communityId())) {

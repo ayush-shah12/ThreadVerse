@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/posts")
 public class PostController {
@@ -50,6 +51,12 @@ public class PostController {
     public ResponseEntity<List<PostWithUserDTO>> getPostsByCommunity(@PathVariable String communityId) {
         return ResponseEntity.ok(postService.getPostsByCommunityId(communityId));
     }
+
+    @GetMapping("/getByAuthor/{authorId}")
+    public ResponseEntity<List<Post>> getPostsByAuthor(@PathVariable String authorId) {
+        return ResponseEntity.ok(postService.getPostsByAuthorId(authorId));
+    }
+    
 
     @GetMapping("/getCommunityName/{postId}")
     public Map<String, String> getCommunityNameFromPostId(@PathVariable String postId) {
