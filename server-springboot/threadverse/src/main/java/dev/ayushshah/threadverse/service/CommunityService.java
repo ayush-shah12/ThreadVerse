@@ -76,6 +76,10 @@ public class CommunityService {
                 return c;
         }
 
+        public List<Community> getCommunitiesByAuthor(String authorId){
+                return communityRepository.findAllByAuthorId(authorId);
+        }
+
         public Community createCommunity(CreateCommunityRequest createCommunityRequest, String userId) {
                 if (communityRepository.existsByNameAllIgnoreCase(createCommunityRequest.name())) {
                         throw new RuntimeException("Community Name Already Exists");

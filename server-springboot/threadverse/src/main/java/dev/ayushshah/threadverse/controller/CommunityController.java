@@ -21,6 +21,8 @@ import dev.ayushshah.threadverse.model.Community;
 
 import java.util.List;
 import java.util.Map;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/communities")
@@ -40,6 +42,12 @@ public class CommunityController {
     public ResponseEntity<CommunityWithUserDTO> getCommunityById(@PathVariable String communityId) {
         return ResponseEntity.ok(communityService.getCommunityById(communityId));
     }
+
+    @GetMapping("/getByAuthor/{authorId}")
+    public ResponseEntity<List<Community>> getMethodName(@PathVariable String authorId) {
+        return ResponseEntity.ok(communityService.getCommunitiesByAuthor(authorId));
+    }
+    
 
     @PostMapping("/create")
     public ResponseEntity<Community> createCommunity(@RequestBody CreateCommunityRequest createCommunityRequest,
