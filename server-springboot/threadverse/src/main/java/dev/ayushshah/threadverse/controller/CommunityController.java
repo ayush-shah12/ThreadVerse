@@ -49,7 +49,7 @@ public class CommunityController {
     }
 
     @PutMapping("/update/{communityId}")
-    public ResponseEntity<Community> putMethodName(@RequestBody UpdateResourceRequest updateCommunityRequest,
+    public ResponseEntity<Community> updateCommunity(@RequestBody UpdateResourceRequest updateCommunityRequest,
             @PathVariable String communityId, Authentication auth) {
         return ResponseEntity.ok(communityService.updateCommunity(communityId, updateCommunityRequest,
                 ((UserDTO) auth.getPrincipal()).getId()));
