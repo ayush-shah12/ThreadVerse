@@ -1,5 +1,4 @@
-/client-react/src/pages/ linguist-vendored
-/client-react/public/ linguist-vendored
-/client-react/src/stylesheets/ linguist-vendored
-/client-react/build/ linguist-vendored
-/client-react/dist/ linguist-vendored
+/client-react/src/pages/** linguist-vendored
+/client-react/src/stylesheets/** linguist-vendored
+/client-react/build/** linguist-vendored
+/client-react/dist/** linguist-vendored
