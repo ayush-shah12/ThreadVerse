@@ -48,6 +48,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/comments", "/comments/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/comments", "/comments/**").authenticated()
 
+                        .requestMatchers(HttpMethod.GET, "/vote", "/vote/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/vote", "/vote/**").authenticated()
+
+
 
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
