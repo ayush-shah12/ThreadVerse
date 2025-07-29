@@ -19,7 +19,7 @@ public class CommentWithUserDTO {
 
     private Date date;
 
-    private String authorID;
+    private String authorId;
     private List<String> replyIds;
 
     private UserDTO user;
