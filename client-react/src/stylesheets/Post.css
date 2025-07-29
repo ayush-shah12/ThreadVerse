@@ -1,0 +1,169 @@
+/* FOR HOMEPAGE DISPLAY OF POSTS (preview)*/
+.post {
+    margin-top: 1rem;
+    display: flex;
+    width: 40vw;
+    height: auto;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    border-radius: 10px;
+    padding: 1rem;
+    border-bottom: .3vh dashed black;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.postHeader {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.postHeader p {
+    color: black;
+    font: .9em 'Poppins', sans-serif;
+}
+
+.postTitle {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.postTitle h3 {
+    color: black;
+    font: 1.5em 'Poppins', sans-serif;
+}
+
+.linkFlair {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    gap: 0.5vw;
+}
+
+.linkFlair p {
+    color: black;
+    font: .9em 'Poppins', sans-serif;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #6366F1;
+}
+
+.postTextPreview {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.postTextPreview p {
+    color: black;
+    font: 1em 'Poppins', sans-serif;
+}
+
+.postFooter {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.postFooter p {
+    color: black;
+    font: .9em 'Poppins', sans-serif;
+}
+
+/* FOR INDIVIDUAL DISPLAY OF POST */
+.postPage {
+    display: flex;
+    width: 75vw;
+    min-height: 40vh;
+    max-height: 50vh;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    border-radius: 10px;
+    padding: 1rem;
+    gap: 1rem;
+    margin: 1rem;
+    border: .3vh solid black;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.topHeader {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.topHeader p {
+    color: black;
+    font: .9em 'Poppins', sans-serif;
+}
+
+
+.addCommentButtonContainer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 73vw;
+    height: 5vh;
+    border-radius: 10px;
+    gap: 1rem;
+}
+
+.addCommentButtonContainer button {
+    cursor: pointer;
+    font: 600 .85em 'Poppins', sans-serif;
+    border-radius: 8px;
+    width: 10vw;
+    height: 5vh;
+    background-color: white !important;
+    border: 1px solid #d1d5db;
+    color: black !important;
+}
+
+.postContent {
+    max-width: 80%;
+    display: flex;
+    justify-content: left;
+
+}
+
+.postContent p {
+    color: black;
+    font: 1em 'Poppins', sans-serif;
+}
+
+.postAuthor p {
+    color: black;
+    font: .9em 'Poppins', sans-serif;
+}
+
+.votingSection {
+display: flex;
+align-items: center;
+gap: 0.3rem; 
+}
+
+.votingSection img {
+width: 20px;  
+height: 20px;  
+cursor: pointer;
+}
+
+.profilePost {
+    background-color: rgb(220, 220, 220);
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.profilePost h3 {
+    margin: 0;
+    font: 1.2em 'Poppins', sans-serif;
+    color: black;
+}

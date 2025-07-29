@@ -1,0 +1,106 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 0 10%;
+    border-bottom: 0.3vh solid black;
+}
+
+.logo {
+    padding-bottom: 0.5vh;
+    max-width: 15vw;
+    max-height: 15vh;
+}
+
+.search {
+    padding-left: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    height: 5vh;
+    background-color: rgba(255, 255, 255, 0.902);
+    border: 2px solid #6366F1;
+    border-radius: 15px;
+    color: #6366F1;
+}
+
+.search::placeholder {
+    color: #6366F1;
+    opacity: 0.8;
+    animation: typing 1s ease-in-out infinite;
+}
+
+@keyframes typing {
+    0%, 50% { opacity: 0.8; }
+    51%, 100% { opacity: 0.4; }
+}
+
+.logo-name {
+    display: flex;
+    font: 1.5em 'Poppins', sans-serif;
+    color: #6366F1;
+    text-decoration: none;
+}
+
+.create {
+    border-radius: 8px;
+    width: 10vw;
+    height: 6vh;
+    background-color: white;
+    color: black;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    font: 500 .85em 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.create:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.user, .logout{
+    border-radius: 8px;
+    width: 10vw;
+    height: 6vh;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    color: black;
+    cursor: pointer;
+    font: 500 .85em 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+}
+
+/* .user:hover, .logout:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+} */
+
+.create.active, .user.active, .logout.active,
+.create[style*="background-color: #6366F1"], 
+.user[style*="background-color: #6366F1"], 
+.logout[style*="background-color: #6366F1"] {
+    background-color: #6366F1 !important;
+    color: rgb(0, 0, 0) !important;
+    border-color: #6366F1 !important;
+    font-weight: 700;
+}
+
+.button-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.disabled-button:hover {
+    background-color: #9ca3af !important;
+}

@@ -1,0 +1,95 @@
+.create-community-container {
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    min-height: 90vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.create-community-container h2 {
+    text-align: center;
+    color: #6366F1;
+    margin-bottom: 1.5rem;
+    font-size: 2em;
+}
+
+.create-community-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333333;
+}
+
+.form-group .required {
+    color: #6366F1;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group small {
+    font-size: 0.8em;
+    color: gray;
+    align-self: flex-end;
+}
+
+
+.error-message {
+    color: #6366F1;
+    font-size: 0.9em;
+}
+
+
+.engender-button {
+    padding: 0.75rem;
+    background-color: #6366F1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    align-self: center;
+}
+
+.engender-button:hover {
+    background-color: #4f46e5;
+}
+
+.delete-comment-button {
+    background-color: #6366F1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
