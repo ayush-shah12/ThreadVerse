@@ -1,7 +1,7 @@
 # Ignore generated files or style assets
 /client-react/src/**/*.css linguist-vendored
 /client-react/src/**/*.svg linguist-vendored
-/client-react/src/pages/ linguist-vendored
+/client-react/src/pages/.jsx linguist-vendored
 /client-react/public/** linguist-vendored
 /client-react/build/** linguist-vendored
 /client-react/dist/** linguist-vendored
