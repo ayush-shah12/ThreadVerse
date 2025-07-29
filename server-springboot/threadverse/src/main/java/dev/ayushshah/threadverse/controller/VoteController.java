@@ -30,17 +30,17 @@ public class VoteController {
     }
 
     @PostMapping("/post/{postId}")
-    public ResponseEntity<Map<?, ?>> addPostVote(@RequestBody VoteRequest vote, @PathVariable String postId, Authentication auth) {
-        return ResponseEntity.ok(voteService.addPostVote(postId, vote.voteType(), ((UserDTO) auth.getPrincipal()).getId()));
+    public ResponseEntity<Map<?, ?>> addPostVote(@RequestBody VoteRequest vote, @PathVariable String postId,
+            Authentication auth) {
+        return ResponseEntity
+                .ok(voteService.addPostVote(postId, vote.voteType(), ((UserDTO) auth.getPrincipal()).getId()));
     }
 
     @PostMapping("/comment/{commentId}")
-    public ResponseEntity<Map<?, ?>> addCommentVote(@RequestBody VoteRequest vote, @PathVariable String commentId, Authentication auth) {
-        return ResponseEntity.ok(Map.of());
-
-        // TODO: implement once comments are implemented
-        // return voteService.addCommentVote(commentId, vote.voteType(), ((UserDTO)
-        // auth.getPrincipal()).getId());
+    public ResponseEntity<Map<?, ?>> addCommentVote(@RequestBody VoteRequest vote, @PathVariable String commentId,
+            Authentication auth) {
+        return ResponseEntity
+                .ok(voteService.addCommentVote(commentId, vote.voteType(), ((UserDTO) auth.getPrincipal()).getId()));
     }
 
 }
