@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import dev.ayushshah.threadverse.dto.UserDTO;
 import dev.ayushshah.threadverse.model.VoteType;
 import dev.ayushshah.threadverse.service.VoteService;
+import org.springframework.web.bind.annotation.GetMapping;
 
 record VoteRequest(
         VoteType voteType) {
@@ -41,6 +42,16 @@ public class VoteController {
             Authentication auth) {
         return ResponseEntity
                 .ok(voteService.addCommentVote(commentId, vote.voteType(), ((UserDTO) auth.getPrincipal()).getId()));
+    }
+
+    @GetMapping("/post/myVote/{postId}")
+    public ResponseEntity<Map<String, VoteType>> getUserVoteForPost(@PathVariable String postId, Authentication auth) {
+        return ResponseEntity.ok(voteService.getUserVoteForPost(postId, ((UserDTO) auth.getPrincipal()).getId()));
+    }
+
+    @GetMapping("/comment/myVote/{commentId}")
+    public ResponseEntity<Map<String, VoteType>> getUserVoteForComment(@PathVariable String commentId, Authentication auth) {
+        return ResponseEntity.ok(voteService.getUserVoteForComment(commentId, ((UserDTO) auth.getPrincipal()).getId()));
     }
 
 }

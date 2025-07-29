@@ -1,9 +1,9 @@
 package dev.ayushshah.threadverse.service;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
 import dev.ayushshah.threadverse.exceptions.ResourceNotFoundException;
 import dev.ayushshah.threadverse.model.CommentVote;
 import dev.ayushshah.threadverse.model.Post;
@@ -17,7 +17,6 @@ import dev.ayushshah.threadverse.repository.PostVoteRepository;
 import dev.ayushshah.threadverse.repository.UserRepository;
 import dev.ayushshah.threadverse.model.Comment;
 
-
 @Service
 public class VoteService {
 
@@ -28,7 +27,8 @@ public class VoteService {
     private final UserRepository userRepository;
 
     public VoteService(PostRepository postRepository, PostVoteRepository postVoteRepository,
-            UserRepository userRepository, CommentVoteRepository commentVoteRepository, CommentRepository commentRepository) {
+            UserRepository userRepository, CommentVoteRepository commentVoteRepository,
+            CommentRepository commentRepository) {
         this.postRepository = postRepository;
         this.postVoteRepository = postVoteRepository;
         this.userRepository = userRepository;
@@ -107,7 +107,8 @@ public class VoteService {
         CommentVote userCommentVote = commentVoteRepository.findByUserIdAndCommentId(userId, commentId)
                 .orElse(CommentVote.builder().userId(userId).commentId(commentId).build());
 
-        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new ResourceNotFoundException("Comment Not Found"));
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Comment Not Found"));
 
         // a vote's effect changes based on the user's initial vote state
         int voteChange = 0;
@@ -166,4 +167,25 @@ public class VoteService {
         return Map.of("success", true, "newVoteState", newVoteState.name(), "newVoteCount", newCommentVotes);
     }
 
+    public Map<String, VoteType> getUserVoteForPost(String postId, String userId) {
+        Optional<PostVote> postVote = postVoteRepository.findByUserIdAndPostId(userId, postId);
+
+        if (postVote.isPresent()) {
+            return Map.of("vote", postVote.get().getVote());
+        }
+
+        return Map.of("vote", VoteType.NOVOTE);
+
+    }
+
+    public Map<String, VoteType> getUserVoteForComment(String commentId, String userID) {
+        Optional<CommentVote> commentVote = commentVoteRepository.findByUserIdAndCommentId(userID, commentId);
+
+        if (commentVote.isPresent()) {
+            return Map.of("vote", commentVote.get().getVote());
+        }
+
+        return Map.of("vote", VoteType.NOVOTE);
+
+    }
 }
