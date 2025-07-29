@@ -1,5 +1,6 @@
 package dev.ayushshah.threadverse.config;
 
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,12 +29,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()    
+                        .requestMatchers("/auth/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/users", "/users/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/users", "/users/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/users", "/users/**").authenticated()
-
 
                         .requestMatchers(HttpMethod.GET, "/posts", "/posts/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/posts", "/posts/**").authenticated()
@@ -43,7 +43,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/communities", "/communities/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/communities", "/communities/**").authenticated()
 
-
                         .requestMatchers(HttpMethod.GET, "/comments", "/comments/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comments", "/comments/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/comments", "/comments/**").authenticated()
@@ -51,7 +50,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/vote", "/vote/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/vote", "/vote/**").authenticated()
 
-
+                        .requestMatchers(HttpMethod.GET, "/linkflairs", "/linkflairs/**").permitAll()
 
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
