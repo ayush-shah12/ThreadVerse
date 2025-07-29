@@ -27,6 +27,6 @@ public class Comment {
     @Builder.Default
     private Date date = new Date();
 
-    private String authorID;
+    private String authorId;
     private List<String> replyIds;    
 }

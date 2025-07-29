@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface CommentRepository extends MongoRepository<Comment, String>{
-    public List<Comment> findAllByAuthorID(String authorId);
+    public List<Comment> findAllByAuthorId(String authorId);
 
     public Optional<Comment> findByReplyIdsContaining(String commentId);
 }

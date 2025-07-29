@@ -41,7 +41,7 @@ public class CommentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Comment Not Found"));
 
         // get author
-        User user = userRepository.findById(comment.getAuthorID())
+        User user = userRepository.findById(comment.getAuthorId())
                 .orElseThrow(() -> new ResourceNotFoundException("Comment Author Not Found"));
 
         CommentWithUserDTO c = commentMapper.toDTO(comment);
@@ -56,7 +56,7 @@ public class CommentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Comment Not Found"));
 
         // authorize
-        if (!comment.getAuthorID().equals(authorId)) {
+        if (!comment.getAuthorId().equals(authorId)) {
             throw new RuntimeException("Not Authorized To Update Comment");
         }
 
@@ -73,7 +73,7 @@ public class CommentService {
 
         // build and save comment
         Comment comment = Comment.builder()
-                .authorID(author_id)
+                .authorId(author_id)
                 .content(commentContent)
                 .replyIds(List.of())
                 .build();
@@ -92,7 +92,7 @@ public class CommentService {
 
         // Build and Save Comment
         Comment comment = Comment.builder()
-                .authorID(authorId)
+                .authorId(authorId)
                 .content(commentContent)
                 .replyIds(List.of())
                 .build();
@@ -111,7 +111,7 @@ public class CommentService {
     }
 
     public List<Map<?, ?>> getAllCommentsByAuthor(String authorId) {
-        return commentRepository.findAllByAuthorID(authorId)
+        return commentRepository.findAllByAuthorId(authorId)
                 .stream()
                 .map(comment -> {
 
