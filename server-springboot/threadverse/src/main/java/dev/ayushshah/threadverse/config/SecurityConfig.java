@@ -44,6 +44,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/communities", "/communities/**").authenticated()
 
 
+                        .requestMatchers(HttpMethod.GET, "/comments", "/comments/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/comments", "/comments/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/comments", "/comments/**").authenticated()
+
+
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

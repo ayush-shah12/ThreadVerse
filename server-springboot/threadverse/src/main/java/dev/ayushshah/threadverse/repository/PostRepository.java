@@ -11,4 +11,10 @@ import dev.ayushshah.threadverse.model.Post;
 public interface PostRepository extends MongoRepository<Post, String> {
 
     public List<Post> findAllByAuthorId(String authorId);
+
+    public boolean existsByCommentIdsContaining(String commentId);
+
+    public Post findByCommentIdsContaining(String commentId);
+
+
 }
