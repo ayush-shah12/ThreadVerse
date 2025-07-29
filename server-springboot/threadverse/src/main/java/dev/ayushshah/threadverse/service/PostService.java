@@ -68,6 +68,7 @@ public class PostService {
 					postWithUserDTO.setUser(user != null
 							? UserDTO.builder()
 									.displayName(user.getDisplayName())
+									.id(user.getId())
 									.build()
 							: null);
 					return postWithUserDTO;
@@ -101,6 +102,7 @@ public class PostService {
 					postWithUserDTO.setUser(user != null
 							? UserDTO.builder()
 									.displayName(user.getDisplayName())
+									.id(user.getId())
 									.build()
 							: null);
 					return postWithUserDTO;

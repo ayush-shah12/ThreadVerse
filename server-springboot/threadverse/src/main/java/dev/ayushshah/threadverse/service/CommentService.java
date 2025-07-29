@@ -45,7 +45,7 @@ public class CommentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Comment Author Not Found"));
 
         CommentWithUserDTO c = commentMapper.toDTO(comment);
-        c.setUser(UserDTO.builder().displayName(user.getDisplayName()).build());
+        c.setUser(UserDTO.builder().displayName(user.getDisplayName()).id(user.getId()).build());
 
         return c;
     }

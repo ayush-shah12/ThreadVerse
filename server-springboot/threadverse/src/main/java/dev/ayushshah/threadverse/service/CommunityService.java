@@ -56,6 +56,9 @@ public class CommunityService {
                                                                         .displayName(user != null
                                                                                         ? user.getDisplayName()
                                                                                         : "")
+                                                                        .id(user != null
+                                                                                        ? user.getId()
+                                                                                        : "")
                                                                         .build();
                                                         c.setUser(userDTO);
                                                         return c;
@@ -71,12 +74,12 @@ public class CommunityService {
                                 .orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
 
                 CommunityWithUserDTO c = communityMapper.toDTO(community);
-                c.setUser(UserDTO.builder().displayName(user.getDisplayName()).build());
+                c.setUser(UserDTO.builder().displayName(user.getDisplayName()).id(user.getId()).build());
 
                 return c;
         }
 
-        public List<Community> getCommunitiesByAuthor(String authorId){
+        public List<Community> getCommunitiesByAuthor(String authorId) {
                 return communityRepository.findAllByAuthorId(authorId);
         }
 
