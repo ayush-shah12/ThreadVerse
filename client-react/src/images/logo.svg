@@ -1,0 +1,18 @@
+<svg width="300" height="80" viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      .text { font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 28px; fill: #6366F1; }
+      .dot-thread { fill: #6366F1; }
+      .thread-line { stroke: #6366F1; stroke-width: 2; stroke-linecap: round; }
+    </style>
+  
+    <!-- Thread Dot -->
+    <circle class="dot-thread" cx="30" cy="40" r="6"/>
+    <!-- Thread Line -->
+    <path class="thread-line" d="M36 40 C 60 15, 90 65, 110 40" />
+    <!-- Another Dot -->
+    <circle class="dot-thread" cx="110" cy="40" r="6"/>
+  
+    <!-- Text -->
+    <text x="130" y="48" class="text">ThreadVerse</text>
+  </svg>
+  

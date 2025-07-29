@@ -1,0 +1,91 @@
+
+.new-post-container {
+    padding: 1rem;
+    background-color: white;
+    min-height: 90vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.new-post-container h2 {
+    text-align: center;
+    color: #6366F1;
+    margin-bottom: 1rem;
+    font-size: 2em;
+}
+.postContent p {
+    white-space: pre-wrap;
+        /* Keep above or not? */
+}
+
+.new-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.75rem;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-group small {
+    font-size: 0.8em;
+    color: gray;
+    align-self: flex-end;
+}
+
+.error-message {
+    color: #6366F1;
+    font-size: 0.9em;
+}
+
+.submit-post-button {
+    padding: 0.50rem;
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    align-self: center;
+}
+
+.submit-post-button:hover {
+    background-color: #4f46e5;
+}
+
+.delete-comment-button {
+    background-color: #6366F1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

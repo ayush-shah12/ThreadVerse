@@ -1,0 +1,86 @@
+/* Main */
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 75vw;
+    background-color: rgb(255, 255, 255);
+}
+
+.main header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.5vw; 
+}
+
+.communityInfo {
+    align-items: flex-start;
+    /* padding-left: .5vw; */
+}
+
+.buttonContainer button {
+    margin-top: 5%;
+    flex-grow: 1;
+    border-radius: 10px;
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(203, 197, 197);
+    cursor: pointer;
+    font: .8em 'Poppins', sans-serif;
+}
+
+.buttonContainer button:hover {
+    background-color: #6366F1;
+    color: rgb(255, 255, 255);
+}
+
+.buttonContainer {
+    align-self: flex-end;
+    display: flex;
+    gap: 0.1rem;
+}
+
+.postCountDiv {
+    border-bottom: 0.1vh solid black;
+    margin-top: 10px;
+}
+
+/* contains ALL posts */
+.postContainer {
+    display: flex;
+    height: 85vh;
+    width: 75vw;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+#numPosts {
+    padding-bottom: 5px;
+    padding-left: 0.5vw; 
+}
+
+.linkToPost {
+    text-decoration: none;
+    color: black;
+}
+
+.buttonContainer button.selected {
+    background-color:  #6366F1;
+    color: rgb(0, 0, 0);
+}
+
+#backButton {
+    font-weight:bold;
+    color:#6366F1;
+    background-color: rgb(0, 0, 0);
+
+}
+
+#backButton:hover {
+
+    background-color: #6366F1;
+    color: rgb(4, 4, 4);
+}

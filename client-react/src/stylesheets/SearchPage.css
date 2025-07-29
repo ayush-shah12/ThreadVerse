@@ -1,0 +1,33 @@
+
+.postCountDiv1{
+    padding-left: 0.5vw; 
+    padding-bottom: 1vw ;
+    border-bottom: 0.1vh solid black;
+
+
+}
+.no-results-image {
+    width: 200px;
+    margin-top: 40px;
+}
+
+.no-results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+h2{
+ padding-bottom: 5px;
+}
+
+.no-results-container p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #555555;
+    text-align: center;
+}
+
+
+

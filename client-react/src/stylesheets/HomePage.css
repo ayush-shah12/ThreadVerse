@@ -1,0 +1,84 @@
+/* Main */
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 75vw;
+    background-color: rgb(255, 255, 255);
+}
+
+.main header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.5vw; 
+}
+
+.communityInfo {
+    align-items: flex-start;
+    /* padding-left: .5vw; */
+}
+
+.buttonContainer button {
+    margin-top: 5%;
+    flex-grow: 1;
+    border-radius: 8px;
+    width: 10vw;
+    height: 5vh;
+    background-color: white !important;
+    background: white !important;
+    border: 1px solid #d1d5db;
+    color: black !important;
+    cursor: pointer;
+    font: 600 .85em 'Poppins', sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+
+
+.buttonContainer button.selected {
+    background-color: #6366F1 !important;
+    background: #6366F1 !important;
+    color: black !important;
+    border-color: #6366F1;
+    font-weight: 700;
+}
+
+
+
+.buttonContainer {
+    align-self: flex-end;
+    display: flex;
+    gap: 0.1rem;
+}
+
+.postCountDiv {
+    border-bottom: 0.1vh solid black;
+    margin-top: 10px;
+}
+
+/* contains ALL posts */
+.postContainer {
+    display: flex;
+    height: 85vh;
+    width: 75vw;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+#numPosts {
+    padding-bottom: 5px;
+    padding-left: 0.5vw; 
+}
+
+.linkToPost {
+    text-decoration: none;
+    color: black;
+}
+.post-divider hr {
+    border: none;
+    border-top: 2px solid #ccc;
+    margin-top: 10px;
+}

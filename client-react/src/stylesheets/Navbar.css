@@ -1,0 +1,99 @@
+/* Sidebar */
+.sidebar {
+    height: 90vh;
+    /* width: calc(25vw - 10px); */
+    width: 25vw;
+    background-color: rgb(255, 255, 255);
+    border-right: 0.3vh solid black;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    padding: 0;
+    overflow: auto;
+}
+
+/* each element in <ul>     CREATE COMMUNITY */
+.sidebar ul li {        
+    list-style: none;
+    /* padding: 10px 15px; */
+    padding: 10px 15px 10px 20px;
+
+    background-color: rgb(142, 142, 142);
+    border-bottom: 0.1vh solid black;
+}
+
+
+/* this targets sub list of community names, removing bottom border */
+.sidebar ul li.list-communities-li ol.list-communities-ol li {
+    border-bottom: none;
+    background-color: white;
+}
+
+.sidebar div {
+    text-decoration: none;
+    color: black;
+    font: 1em 'Poppins', sans-serif;
+}
+
+.sidebar ul li:hover {
+    background-color: #6366F1;
+    color: rgb(255, 255, 255);
+}
+
+/* home link style */
+.sidebar ul li.home-link {
+    background-color: lightgrey;
+    padding-left: 40px;
+    /* margin: 0 10; */
+    /* margin-bottom: 15px; */
+    border-bottom: 0vw solid black;
+}
+
+.sidebar ul li.home-link:hover {
+    background-color: #6366F1;
+    color: white;
+}
+
+/* style for divider after home link */
+.nav-divider {
+    border: none;
+    border-top: 1px solid black;
+    margin: 8% 3%;
+
+}
+
+/* create community button styling */
+.sidebar ul li.createCommunity,
+.sidebar ul li[class*="createCommunity"] {
+    background-color: rgb(180, 180, 180);
+}
+
+.sidebar ul li.createCommunity:hover,
+.sidebar ul li[class*="createCommunity"]:hover {
+    background-color: #6366F1;
+    color: rgb(255, 255, 255);
+}
+
+.sidebar ul li.list-communities-li {
+
+    background-color: rgb(255, 255, 255);
+    border-bottom: none;
+}
+
+/* ensures the whole community list doesn't get highlighted when one community is hovered over */
+.sidebar ul li.list-communities-li:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+/* targets community names */
+.sidebar ul li.list-communities-li div {
+    text-decoration: none;
+    color: black;
+    font: 1em 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.sidebar ul li.list-communities-li div:hover {
+    color: #6366F1;
+}
