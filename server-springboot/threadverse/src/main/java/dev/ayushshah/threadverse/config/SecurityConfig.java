@@ -1,6 +1,5 @@
 package dev.ayushshah.threadverse.config;
 
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
